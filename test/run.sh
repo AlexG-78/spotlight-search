@@ -42,6 +42,17 @@ mkdir -p "$tmp/data/themes/Fixture-Dark" "$tmp/data/themes/Fixture-Light" "$tmp/
 echo '/* dark-variant */' >"$tmp/config/gtk-4.0/gtk-Dark.css"
 echo '/* light-variant */' >"$tmp/config/gtk-4.0/gtk-Light.css"
 ln -s "$tmp/config/gtk-4.0/gtk-Dark.css" "$tmp/config/gtk-4.0/gtk.css"
+# The shell theme's setting belongs to User Themes: a stub of it carries the schema and is never enabled.
+ut=$tmp/data/gnome-shell/extensions/user-theme@gnome-shell-extensions.gcampax.github.com
+mkdir -p "$ut/schemas"
+echo '{"uuid": "user-theme@gnome-shell-extensions.gcampax.github.com", "name": "Fixture", "description": "Schema only", "shell-version": ["51"]}' \
+    >"$ut/metadata.json"
+cat >"$ut/schemas/org.gnome.shell.extensions.user-theme.gschema.xml" <<'EOF'
+<schemalist><schema id="org.gnome.shell.extensions.user-theme" path="/org/gnome/shell/extensions/user-theme/">
+  <key name="name" type="s"><default>"Fixture-Dark"</default></key>
+</schema></schemalist>
+EOF
+glib-compile-schemas --strict "$ut/schemas"
 
 export XDG_DATA_HOME=$tmp/data XDG_CONFIG_HOME=$tmp/config XDG_CACHE_HOME=$tmp/cache
 export XDG_RUNTIME_DIR=$tmp/run SPOTLIGHT_TEST_OUT=$out

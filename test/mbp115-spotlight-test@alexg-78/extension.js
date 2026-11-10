@@ -312,7 +312,7 @@ export default class TestExtension extends Extension {
         for (const [text, want] of Object.entries(durations))
             this._check(parseDuration(text) === want, `parseDuration(${text}) = ${parseDuration(text)}`);
 
-        // Dark mode also flips fixed-variant themes, and points gtk.css at one file with both variants.
+        // Dark mode also flips fixed-variant GTK themes, leaves the shell theme alone, and points gtk.css at one file with both variants.
         const {swapVariant, setDarkMode} = await import(`file://${Main.extensionManager.lookup(UUID).path}/lib/core/appearance.js`);
         const swaps = [['WhiteSur-Dark', false, 'WhiteSur-Light'], ['WhiteSur-light', true, 'WhiteSur-dark'],
             ['Adwaita', false, 'Adwaita'], ['Yaru-dark', true, 'Yaru-dark']];
@@ -320,13 +320,18 @@ export default class TestExtension extends Extension {
             this._check(swapVariant(name, dark) === want, `swapVariant(${name}, ${dark}) = ${swapVariant(name, dark)}`);
         const iface = new Gio.Settings({schema_id: 'org.gnome.desktop.interface'});
         const gtkCss = `${GLib.get_user_config_dir()}/gtk-4.0/gtk.css`;
+        const shellSchemas = Main.extensionManager.lookup('user-theme@gnome-shell-extensions.gcampax.github.com').dir.get_child('schemas').get_path();
+        const shellTheme = new Gio.Settings({settings_schema: Gio.SettingsSchemaSource.new_from_directory(shellSchemas,
+            Gio.SettingsSchemaSource.get_default(), false).lookup('org.gnome.shell.extensions.user-theme', false)});
         setDarkMode(false);
+        this._check(shellTheme.get_string('name') === 'Fixture-Dark', `shell theme after light: ${shellTheme.get_string('name')}`);
         const autoCss = new TextDecoder().decode(GLib.file_get_contents(gtkCss)[1]);
         this._check(iface.get_string('color-scheme') === 'default' && iface.get_string('gtk-theme') === 'Fixture-Light' &&
             GLib.file_read_link(gtkCss).endsWith('gtk-auto.css') && autoCss.includes('light-variant') &&
             autoCss.includes('dark-variant') && autoCss.includes('@media (prefers-color-scheme: dark)'),
             `light: ${iface.get_string('gtk-theme')} ${GLib.file_read_link(gtkCss)}`);
         setDarkMode(true);
+        this._check(shellTheme.get_string('name') === 'Fixture-Dark', `shell theme after dark: ${shellTheme.get_string('name')}`);
         this._check(iface.get_string('color-scheme') === 'prefer-dark' && iface.get_string('gtk-theme') === 'Fixture-Dark' &&
             GLib.file_read_link(gtkCss).endsWith('gtk-auto.css'), `dark: ${iface.get_string('gtk-theme')} ${GLib.file_read_link(gtkCss)}`);
         await wait(800);

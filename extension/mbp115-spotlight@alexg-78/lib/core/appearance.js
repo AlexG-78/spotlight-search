@@ -1,11 +1,9 @@
-// Spotlight Search: dark/light switch that also flips fixed-variant themes like WhiteSur-Dark
+// Spotlight Search: dark/light switch that also flips fixed-variant GTK and icon themes like WhiteSur-Dark
 // SPDX-License-Identifier: GPL-3.0-or-later
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
-
-const USER_THEME = 'user-theme@gnome-shell-extensions.gcampax.github.com';
 
 // "WhiteSur-Dark" -> "WhiteSur-Light" and back, keeping the case of the suffix.
 export function swapVariant(name, dark) {
@@ -26,16 +24,6 @@ function swapSetting(settings, key, dark, kind) {
     const swapped = swapVariant(name, dark);
     if (swapped !== name && themeExists(swapped, kind))
         settings.set_string(key, swapped);
-}
-
-function userThemeSettings() {
-    const dir = Main.extensionManager.lookup(USER_THEME)?.dir.get_child('schemas');
-    if (!dir?.query_exists(null))
-        return null;
-    const source = Gio.SettingsSchemaSource.new_from_directory(dir.get_path(),
-        Gio.SettingsSchemaSource.get_default(), false);
-    const schema = source.lookup('org.gnome.shell.extensions.user-theme', false);
-    return schema ? new Gio.Settings({settings_schema: schema}) : null;
 }
 
 // Themes like WhiteSur install gtk.css for GTK 4 as a link to their dark or light file, which
@@ -59,15 +47,13 @@ function linkAutoGtk4Css() {
     link.make_symbolic_link(auto, null);
 }
 
+// The shell theme stays as it is, like with GNOME's own Dark Style: the kit keeps the top bar and menus dark in both styles.
 export function setDarkMode(dark) {
     Main.layoutManager.screenTransition.run();
     const iface = new Gio.Settings({schema_id: 'org.gnome.desktop.interface'});
     iface.set_string('color-scheme', dark ? 'prefer-dark' : 'default');
     swapSetting(iface, 'gtk-theme', dark, 'themes');
     swapSetting(iface, 'icon-theme', dark, 'icons');
-    const shell = userThemeSettings();
-    if (shell)
-        swapSetting(shell, 'name', dark, 'themes');
     try {
         linkAutoGtk4Css();
     } catch {
