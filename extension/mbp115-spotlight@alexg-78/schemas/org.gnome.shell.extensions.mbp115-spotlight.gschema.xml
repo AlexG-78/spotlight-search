@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.mbp115-spotlight" path="/org/gnome/shell/extensions/mbp115-spotlight/">
+    <key name="toggle-spotlight" type="as">
+      <default><![CDATA[['<Super>space']]]></default>
+      <summary>Toggle Spotlight</summary>
+    </key>
+    <key name="show-apps" type="as">
+      <default><![CDATA[['XF86LaunchB']]]></default>
+      <summary>Open the Apps view</summary>
+      <description>The MacBook Launchpad key (F4) sends XF86LaunchB.</description>
+    </key>
+    <key name="web-search-url" type="s">
+      <default>'https://duckduckgo.com/?q=%s'</default>
+      <summary>Web search URL</summary>
+      <description>%s is replaced by the escaped query.</description>
+    </key>
+    <key name="quick-keys" type="a{ss}">
+      <default><![CDATA[{'tm': 'timer', 'em': 'email', 'nn': 'note', 'lk': 'lock-screen', 'ss': 'open-screenshot-ui', 'dm': 'dark-mode', 'wf': 'wifi', 'bt': 'bluetooth', 'dnd': 'dnd', 'nl': 'night-light', 'et': 'empty-trash'}]]></default>
+      <summary>Quick Keys</summary>
+      <description>Short code to action id. An exact match becomes the Top Hit.</description>
+    </key>
+    <key name="clipboard-history" type="b">
+      <default>false</default>
+      <summary>Keep clipboard history</summary>
+      <description>Off until the user opts in. Turning it off deletes the history.</description>
+    </key>
+    <key name="clipboard-retention" type="i">
+      <range min="1" max="10080"/>
+      <default>480</default>
+      <summary>Clipboard history retention in minutes</summary>
+      <description>30 minutes, 8 hours (480) or 7 days (10080).</description>
+    </key>
+    <key name="clipboard-ignore-apps" type="as">
+      <default><![CDATA[['bitwarden', 'keepass', '1password', 'enpass', 'protonpass', 'proton-pass', 'org.gnome.World.Secrets', 'seahorse', 'authenticator', 'passwordsafe', 'gopass', 'lastpass', 'dashlane', 'nordpass']]]></default>
+      <summary>Apps whose copies never enter the clipboard history</summary>
+      <description>Matched case-insensitively against the window class and app id of the focused window.</description>
+    </key>
+    <key name="appearance" type="s">
+      <choices><choice value="auto"/><choice value="light"/><choice value="dark"/></choices>
+      <default>'auto'</default>
+      <summary>Light or dark look</summary>
+      <description>auto follows the system style.</description>
+    </key>
+    <key name="reduce-transparency" type="b">
+      <default>false</default>
+      <summary>Reduce transparency</summary>
+      <description>Solid background without blur.</description>
+    </key>
+    <key name="show-panel-icon" type="b">
+      <default>true</default>
+      <summary>Show the magnifier in the top bar</summary>
+    </key>
+  </schema>
+</schemalist>

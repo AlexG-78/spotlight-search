@@ -1,0 +1,11 @@
+{
+  "uuid": "mbp115-spotlight@alexg-78",
+  "name": "Spotlight Search",
+  "description": "A macOS-style search bar for GNOME. A shortcut (Super+Space by default, ⌘Space on a Mac keyboard) opens a glass panel that finds apps, files, settings and actions, runs quick actions with Quick Keys, keeps an opt-in clipboard history and calculates. Leaves the Overview search alone.\n\nBased on Spotlight by itsnin.",
+  "shell-version": [
+    "51"
+  ],
+  "url": "https://github.com/AlexG-78/spotlight-search",
+  "settings-schema": "org.gnome.shell.extensions.mbp115-spotlight",
+  "version": 2
+}

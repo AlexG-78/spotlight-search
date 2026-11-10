@@ -1,0 +1,226 @@
+/* Spotlight Search. Dark is the base. The window gets .spotlight-light (system light, or pinned in
+   prefs) and .spotlight-solid (reduce transparency); those rules override colors only. */
+
+.spotlight-panel {
+  border-radius: 26px;
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.35);
+}
+
+.spotlight-content {
+  border-radius: 26px;
+  background-color: rgba(28, 28, 30, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.spotlight-bar {
+  height: 52px;
+  padding: 0 10px 0 18px;
+  spacing: 6px;
+}
+
+.spotlight-bar-icon {
+  icon-size: 20px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-right: 4px;
+}
+
+.spotlight-entry,
+.spotlight-entry:focus,
+.spotlight-entry:hover {
+  font-size: 22px;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  color: #ffffff;
+  caret-color: -st-accent-color;
+  selection-background-color: st-transparentize(-st-accent-color, 0.5);
+}
+
+.spotlight-entry StLabel.hint-text {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.spotlight-browse-button {
+  width: 34px;
+  height: 34px;
+  border-radius: 17px;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.spotlight-browse-button:hover {
+  background-color: rgba(255, 255, 255, 0.16);
+}
+
+.spotlight-browse-button:focus {
+  box-shadow: inset 0 0 0 2px st-transparentize(-st-accent-color, 0.3);
+}
+
+.spotlight-browse-icon {
+  icon-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.spotlight-ghost {
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.spotlight-chips {
+  spacing: 4px;
+  padding: 2px 12px 8px 12px;
+}
+
+.spotlight-chip {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 14px;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.spotlight-chip:hover { background-color: rgba(255, 255, 255, 0.16); }
+
+.spotlight-chip:checked {
+  background-color: -st-accent-color;
+  color: -st-accent-fg-color;
+}
+
+/* Long result lists scroll instead of pushing the panel off the screen. */
+.spotlight-scroll { max-height: 520px; }
+
+.spotlight-results { padding: 0 8px 8px 8px; }
+
+.spotlight-section {
+  font-size: 11px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 8px 10px 3px 10px;
+}
+
+.spotlight-row {
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+
+.spotlight-row-box { spacing: 10px; }
+
+.spotlight-row:hover { background-color: rgba(255, 255, 255, 0.06); }
+
+.spotlight-row:selected { background-color: st-transparentize(-st-accent-color, 0.45); }
+
+.spotlight-row-name { font-size: 14px; }
+
+.spotlight-row-desc {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.spotlight-tophit .spotlight-row-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.spotlight-browse-button:checked { background-color: -st-accent-color; }
+.spotlight-browse-button:checked .spotlight-browse-icon { color: -st-accent-fg-color; }
+
+.spotlight-token {
+  font-size: 15px;
+  padding: 3px 10px;
+  margin-right: 6px;
+  border-radius: 8px;
+  background-color: st-transparentize(-st-accent-color, 0.55);
+}
+
+.spotlight-layout-toggle {
+  width: 28px;
+  height: 28px;
+  margin: 0 12px 0 0;
+  border-radius: 14px;
+}
+
+.spotlight-layout-toggle:hover { background-color: rgba(255, 255, 255, 0.1); }
+.spotlight-layout-toggle StIcon { icon-size: 16px; }
+
+.spotlight-grid-row { spacing: 8px; }
+
+.spotlight-cell {
+  width: 96px;
+  padding: 8px 4px;
+  border-radius: 14px;
+}
+
+.spotlight-cell:hover { background-color: rgba(255, 255, 255, 0.06); }
+.spotlight-cell:selected { background-color: st-transparentize(-st-accent-color, 0.45); }
+
+.spotlight-cell-name {
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+.spotlight-params {
+  padding: 0 18px 14px 18px;
+  spacing: 8px;
+}
+
+.spotlight-param {
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: none;
+  background-color: rgba(255, 255, 255, 0.10);
+  color: #ffffff;
+}
+
+.spotlight-param:focus {
+  box-shadow: inset 0 0 0 2px -st-accent-color;
+}
+
+/* Light */
+#mbp115-spotlight.spotlight-light .spotlight-panel {
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.18);
+}
+
+#mbp115-spotlight.spotlight-light .spotlight-content {
+  background-color: rgba(255, 255, 255, 0.55);
+  border-color: rgba(255, 255, 255, 0.6);
+  color: #1d1d1f;
+}
+
+#mbp115-spotlight.spotlight-light .spotlight-bar-icon { color: rgba(0, 0, 0, 0.5); }
+
+#mbp115-spotlight.spotlight-light .spotlight-entry,
+#mbp115-spotlight.spotlight-light .spotlight-entry:focus,
+#mbp115-spotlight.spotlight-light .spotlight-entry:hover { color: #1d1d1f; }
+
+#mbp115-spotlight.spotlight-light .spotlight-entry StLabel.hint-text { color: rgba(0, 0, 0, 0.4); }
+
+#mbp115-spotlight.spotlight-light .spotlight-browse-button { background-color: rgba(0, 0, 0, 0.06); }
+#mbp115-spotlight.spotlight-light .spotlight-browse-button:hover { background-color: rgba(0, 0, 0, 0.12); }
+
+#mbp115-spotlight.spotlight-light .spotlight-browse-icon { color: rgba(0, 0, 0, 0.7); }
+
+#mbp115-spotlight.spotlight-light .spotlight-ghost { color: rgba(0, 0, 0, 0.35); }
+#mbp115-spotlight.spotlight-light .spotlight-chip { background-color: rgba(0, 0, 0, 0.06); color: rgba(0, 0, 0, 0.8); }
+#mbp115-spotlight.spotlight-light .spotlight-chip:hover { background-color: rgba(0, 0, 0, 0.12); }
+#mbp115-spotlight.spotlight-light .spotlight-chip:checked { background-color: -st-accent-color; color: -st-accent-fg-color; }
+#mbp115-spotlight.spotlight-light .spotlight-section { color: rgba(0, 0, 0, 0.5); }
+#mbp115-spotlight.spotlight-light .spotlight-row:hover { background-color: rgba(0, 0, 0, 0.05); }
+#mbp115-spotlight.spotlight-light .spotlight-row:selected { background-color: st-transparentize(-st-accent-color, 0.6); }
+#mbp115-spotlight.spotlight-light .spotlight-row-desc { color: rgba(0, 0, 0, 0.55); }
+#mbp115-spotlight.spotlight-light .spotlight-browse-button:checked { background-color: -st-accent-color; }
+#mbp115-spotlight.spotlight-light .spotlight-browse-button:checked .spotlight-browse-icon { color: -st-accent-fg-color; }
+#mbp115-spotlight.spotlight-light .spotlight-layout-toggle:hover { background-color: rgba(0, 0, 0, 0.06); }
+#mbp115-spotlight.spotlight-light .spotlight-cell:hover { background-color: rgba(0, 0, 0, 0.05); }
+#mbp115-spotlight.spotlight-light .spotlight-cell:selected { background-color: st-transparentize(-st-accent-color, 0.6); }
+
+#mbp115-spotlight.spotlight-light .spotlight-param {
+  background-color: rgba(0, 0, 0, 0.06);
+  color: #000000;
+}
+
+/* Reduce transparency: solid fill, the blur layer is hidden too. */
+#mbp115-spotlight.spotlight-solid .spotlight-content { background-color: #1c1c1e; }
+#mbp115-spotlight.spotlight-light.spotlight-solid .spotlight-content { background-color: #f2f2f7; }

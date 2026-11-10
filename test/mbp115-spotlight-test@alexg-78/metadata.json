@@ -1,0 +1,6 @@
+{
+  "uuid": "mbp115-spotlight-test@alexg-78",
+  "name": "MBP Spotlight headless test",
+  "description": "Drives mbp115-spotlight in a headless shell. Test use only.",
+  "shell-version": ["51"]
+}

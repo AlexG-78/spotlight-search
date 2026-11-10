@@ -1,0 +1,4 @@
+# compiled by install.sh (glib-compile-schemas), also through a development symlink
+extension/*/schemas/gschemas.compiled
+# screenshots of test/run.sh
+test/out/
